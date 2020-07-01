@@ -1,0 +1,109 @@
+body {
+  padding: 0x;
+  margin: 0;
+  font: 14px "Arvo", Helvetica, Arial, sans-serif;
+  background: url('../images/background.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* FORMS */
+.forms{
+  padding: 20px;
+  border: 1px solid #30303087;
+  border-radius: 5px;
+  background-color: #343a40;
+  box-shadow: 4px 9px 12px 0px #303030e0;
+  color: white;
+  font-weight: 550;
+}
+
+
+/* TABLE RENT */
+
+.table {
+  box-shadow: 4px 9px 12px 0px #303030e0;
+}
+
+.table thead th{
+  border-bottom: 0px;
+}
+
+.table tbody tr {
+  background-color: #fdfdfdf2;
+}
+
+.borrar i{
+  color: red;
+}
+
+.editar i{
+  color: blue;
+}
+
+/* CARDS */
+.row.cards{
+  padding-bottom: 20px;
+
+
+    border: 1px solid #30303087;
+    border-radius: 5px;
+    background-color: #343a40;
+    box-shadow: 4px 9px 12px 0px #303030e0;
+    color: white;
+    font-weight: 550;
+  
+}
+
+.card {
+    border: 1px solid #cdcccc87;
+    border-radius: 5px;
+    background-color: #eaeaeaf0;
+    box-shadow: 4px 9px 12px 0px #303030e0;
+    font-weight: 550;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.description {
+  text-align: justify;
+}
+
+.date {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.gender {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* FOOTER */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px; 
+  line-height: 40px; 
+  
+  
+}
+ .footer a {
+  text-decoration: none;
+  color: #808080;
+ }
+
+ .footer a:hover {
+  text-decoration: none;
+  color: #b8b8b8;
+ }

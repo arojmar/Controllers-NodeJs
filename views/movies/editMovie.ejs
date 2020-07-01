@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <% include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <% include ../common/navbar.ejs %>
+    </header>
+    <main>
+        <div class="container py-4">
+            <h1 class="display-4 text-center">Movie Form</h1>
+            <div class="row d-flex align-items-center justify-content-center">
+              <div class="col-12 col-sm-12 col-md-8 col-lg-6 forms">
+                <form action="/movies/updateMovie/<%= resultEdit.id_movie %>" method="post">
+                  <div class="form-group">
+                    <label for="exampleInputTitleMovie1">Title</label>
+                    <input type="text" name="titleMovie" class="form-control"
+                     aria-describedby="titleMovie" value="<%= resultEdit.title %>" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputDescriptionMovie1">Description</label>
+                    <input type="text" name="descriptionMovie" class="form-control"
+                     id="exampleInputDescriptionMovie1" value="<%= resultEdit.description %>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputReleaseDateMovie1">Release date</label>
+                    <input type="date" name="releaseDateMovie" class="form-control"
+                     id="exampleInputReleaseDateMovie1" value="<%= resultEdit.release_date %>">
+                  </div>
+                  <div class="form-group">
+                    <label for="genderMovie">Gender</label>
+                    <select id="genderMovie" name="genderMovie" class="form-control" required>
+                      <option value="<%= resultEdit.gender %>" selected><%= resultEdit.gender %></option>
+                      <option value="Action">Action</option>
+                      <option value="Drama">Drama</option>
+                      <option value="Comedy">Comedy</option>
+                      <option value="Thriller">Thriller</option>
+                      <option value="Sci-Fi">Sci-Fi</option>
+                      <option value="Horror">Horror</option>
+                      <option value="Documentary">Documentary</option>
+                      <option value="Biographical">Biographical</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+    </main>
+    <% include ../common/footer.ejs %>
+</body>
+</html>

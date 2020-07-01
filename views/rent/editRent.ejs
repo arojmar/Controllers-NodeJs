@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Edit</title>
+    <% include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <% include ../common/navbar.ejs %>
+    </header>
+    <main>
+        <div class="container py-4">
+        <h1 class="display-4 text-center">Rent Edit</h1>
+            <div class="row d-flex align-items-center justify-content-center">
+              <div class="col-12 col-sm-12 col-md-8 col-lg-6 forms">
+                <form action="/rent/updateRent/<%= resultList.id_rent %>" method="post">
+                  <div class="form-group">
+                    <label for="titleMovie">Title</label>
+                    <select id="titleMovie" name="idMovie" class="form-control" required>
+                      <option value="<%= resultList.id_movie %>" selected><%= resultList.title %></option>
+                      <% resultMovies.forEach((rent) => { %>
+                        <option value="<%= rent.id_movie %>"><%= rent.title %></option>
+                      <% }) %>                    
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="nameUser">User</label>
+                    <select id="nameUser" name="idUser" class="form-control" required>
+                      <option value="<%= resultList.id_user %>" selected><%= resultList.customer %></option>
+                      <% resultUsers.forEach((rent) => { %>
+                        <option value="<%= rent.id_user %>">
+                          <%= rent.name + ' ' + rent.last_name %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+    </main>
+    <% include ../common/footer.ejs %>
+</body>
+</html>

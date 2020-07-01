@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <% include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <% include ../common/navbar.ejs %>
+    </header>
+    <main>
+        <div class="container py-4">
+            <h1 class="display-4 text-center">Search</h1>
+            <% if(noResults){ %>
+                <h3 class="display-5 text-center pt-4">No hay ninguna coincidencia</h3>
+              <% } else { %>
+            <div class="row pt-4">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr class="col-12">
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Release date</th>
+                            <th>Gender</th>
+                        </tr>
+                    </thead>
+                    <tbody class="registered-tbody">
+                        <% resultSearch.forEach((search) => { %>
+                        <tr>
+                          <td>
+                            <%= search.id_movie %>
+                          </td>
+                          <td><%= search.title %></td>
+                          <td><%= search.description %></td>
+                          <td><%= search.release_date %></td>
+                          <td><%= search.gender %></td>                         
+                        </tr>
+                      <% }); %>  
+                    </tbody>
+                </table>
+                <% } %>
+              </div>
+        </div>
+    </main>
+    <% include ../common/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ERROR</title>
+        <% include common/head.ejs %>
+    </head>
+    <body>
+        <header>
+            <% include common/navbar.ejs %>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <h1><%= message %></h1>
+                    <h2><%= error.status %></h2>
+                    <pre><%= error.stack %></pre>
+                </div>
+            </div>
+        </main>
+    <% include common/footer.ejs %>
+</body>
+</html>
