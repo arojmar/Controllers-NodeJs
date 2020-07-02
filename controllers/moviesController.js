@@ -15,14 +15,12 @@ moviesController.registerNewMovie = (req, res, next) => {
 };
 
 moviesController.saveMovie = (req, res, next) => {
-    let title = req.body.titleMovie;
-    let description = req.body.descriptionMovie;
-    let releaseDate = req.body.releaseDateMovie;
-    let gender = req.body.genderMovie;
+    let {titleMovie, descriptionMovie,
+         releaseDateMovie, genderMovie} = req.body;
 
     let sqlSave = `INSERT INTO movie (title, description, release_date, gender)
-                    VALUES ('${title}','${description}','${releaseDate}',
-                    '${gender}');`;
+                    VALUES ('${titleMovie}','${descriptionMovie}',
+                    '${releaseDateMovie}', '${genderMovie}');`;
 
     connection.query(sqlSave, (err, resultSave) =>{
         if(err) throw err;
@@ -43,15 +41,13 @@ moviesController.editMovie = (req, res, next) => {
 
 moviesController.updateMovie = (req, res, next) => {
     let idMovie = req.params.idMovie;
-    let title = req.body.titleMovie;
-    let description = req.body.descriptionMovie;
-    let releaseDate = req.body.releaseDateMovie;
-    let gender = req.body.genderMovie;
+    let {titleMovie, descriptionMovie,
+        releaseDateMovie, genderMovie} = req.body;
 
-    let sqlUpdate = `UPDATE movie SET title = '${title}', 
-                    description = '${description}', 
-                    release_date = '${releaseDate}',
-                    gender = '${gender}'
+    let sqlUpdate = `UPDATE movie SET title = '${titleMovie}', 
+                    description = '${descriptionMovie}', 
+                    release_date = '${releaseDateMovie}',
+                    gender = '${genderMovie}'
                     WHERE id_movie = ${idMovie};`;
     connection.query(sqlUpdate, (err, resultUpdate) => {
         if(err) throw err;

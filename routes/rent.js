@@ -14,4 +14,6 @@ router.post('/updateRent/:idRent', rentController.updateRent);
 
 router.get('/removeRent/:idRent', rentController.removeRent);
 
+router.get('/orderBy/:order', rentController.listRentOrderBy);
+
 module.exports = router;

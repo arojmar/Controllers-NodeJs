@@ -12,6 +12,12 @@ a {
   color: #00B7FF;
 }
 
+/* INDEX LOGIN */
+.login{
+  height: 55vh;
+}
+
+
 /* FORMS */
 .forms{
   padding: 20px;
@@ -34,6 +40,15 @@ a {
   border-bottom: 0px;
 }
 
+.table thead th a {
+  color:white;
+  text-decoration: none;
+}
+
+.table thead th a:hover {
+  color:#adb5bd;
+}
+
 .table tbody tr {
   background-color: #fdfdfdf2;
 }
@@ -45,6 +60,8 @@ a {
 .editar i{
   color: blue;
 }
+
+
 
 /* CARDS */
 .row.cards{

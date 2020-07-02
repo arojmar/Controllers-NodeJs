@@ -5,7 +5,8 @@ const rentController = {};
 rentController.listRent = (req, res) => {
     let sqlList = `SELECT rent.id_rent as id_rent, 
                           movie.title as title,
-                          customer.name as customer  
+                          concat(customer.name, ' ', customer.last_name)
+                          as customer  
                     FROM rent 
                     JOIN movie ON rent.id_movie = movie.id_movie
                     JOIN customer ON rent.id_user = customer.id_user;`;
@@ -87,6 +88,31 @@ rentController.removeRent = (req, res) => {
     });
 
 }
+
+rentController.listRentOrderBy = (req, res) => {
+    let order = req.params.order;
+    let sqlList = `SELECT rent.id_rent as id_rent, 
+                          movie.title as title,
+                          concat(customer.name, ' ', customer.last_name)
+                          as customer  
+                    FROM rent 
+                    JOIN movie ON rent.id_movie = movie.id_movie
+                    JOIN customer ON rent.id_user = customer.id_user
+                    ORDER BY ${order} ASC;`;
+    connection.query(sqlList, (err, resultList) =>{
+        if(err) throw err;
+        let sqlListMovies = `SELECT id_movie, title FROM movie;`;
+        connection.query(sqlListMovies, (err, resultMovies) => {
+            if(err) throw err;
+            let sqlListUsers = `SELECT id_user, name, last_name FROM customer;`;
+            connection.query(sqlListUsers, (err, resultUsers) => {
+                if(err) throw err;
+                res.render('rent/rent', {resultList, resultMovies, resultUsers});
+            });
+        });
+    });
+}
+
 
 
 module.exports = rentController;

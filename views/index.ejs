@@ -11,7 +11,30 @@
         <% include common/navbar.ejs %>
     </header>
     <main>
-
+        <div class="container">
+            <div class="row login">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6 forms">
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="emailUser">Email</label>
+                                <input type="email" id="emailUser" name="emailUser"
+                                 class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordUser">Password</label>
+                                <input type="password" id="passwordUser" name="passwordUser"
+                                 class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <a href="/users/registerNewUser" class="btn btn-warning ml-3 px-3">
+                                Register
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <% include common/footer.ejs %>
 </body>
