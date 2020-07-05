@@ -6,6 +6,8 @@ CREATE TABLE customer(
 	id_user INT AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(250) NOT NULL,
 	last_name VARCHAR(250) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL,
 	phone NUMERIC(11) NOT NULL,
 	address VARCHAR(250) NOT NULL
 );
@@ -39,13 +41,15 @@ INSERT INTO movie VALUES (8, 'Con la muerte en los talones', 'Un director de mar
 INSERT INTO movie VALUES (9, 'Cantando bajo la lluvia', 'Una productora de cine mudo hace una difícil transición al sonido', '1970-10-31', 'Comedy');
 INSERT INTO movie VALUES (10, 'Dunkerque', 'Dunkerque trata sobre las cientos de miles de tropas británicas y aliadas que quedaron rodeadas por fuerzas del enemigo. Atrapadas en una playa con el mar cortando el paso, se enfrentan a una situación imposible mientras el enemigo se aproxima', '2018-03-09', 'Thriller');
 
-INSERT INTO customer VALUES (1,	'Pepe',	'Lopez Lopez',	'600123123',	'Calle de la alegria, 1');
-INSERT INTO customer VALUES (2,	'Maria',	'Garcia Garcia',	'600123123',	'Avenida de la esperanza, 1');
-INSERT INTO customer VALUES (3,	'Francisco',	'Martin Rodriguez',	'600123456',	'Avenida Martin Rodriguez, 1');
-INSERT INTO customer VALUES (5,	'Antonio',	'Perez Rodriguez',	'700123123',	'Calle del buen rollo, 2');
-INSERT INTO customer VALUES (6,	'Luisa',	'Martinez Lopez',	'600321321',	'Calle de la armonia, 23');
+INSERT INTO customer VALUES (1,	'Mel', 'Gibson', 'mel@email.com', '1234', '600123123', 'Calle de la alegria, 1');
+INSERT INTO customer VALUES (2,	'Audrey', 'Hepburn', 'audrey@email.com', '12345', '600123123', 'Avenida de la esperanza, 1');
+INSERT INTO customer VALUES (3,	'Marilyn', 'Monroe', 'marilyn@email.com', '123456', '600123456', 'Avenida Martin Rodriguez, 1');
+INSERT INTO customer VALUES (5,	'Antonio', 'Banderas', 'antonio@email.com', '1234567',	'700123123', 'Calle del buen rollo, 2');
+INSERT INTO customer VALUES (6,	'Clint', 'Eastwood', 'clint@email.com', '12345678',	'600321321', 'Calle de la armonia, 23');
 
 
 SELECT * FROM customer;
 SELECT * FROM movie;
 SELECT * FROM rent;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
