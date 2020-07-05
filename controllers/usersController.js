@@ -1,9 +1,13 @@
 const connection = require('../config/db.js');
+const sha1 = require('sha1');
+const jwt = require('jsonwebtoken');
+const key = require('../config/verify.js').keyPass;
 const usersController = {};
 
 
 usersController.listUsers = (req, res) => {
     let sqlList = `SELECT * FROM customer;`;
+
     connection.query(sqlList, (err, resultList) =>{
         if(err) throw err;
         res.render('users/users', {resultList});
@@ -11,22 +15,36 @@ usersController.listUsers = (req, res) => {
 }
 
 usersController.registerNewUser = (req, res) => {
-    res.render('users/registerNewUser');
+    let message = null;
+    res.render('users/registerNewUser', {message});
 }
 
 usersController.saveUser = (req, res) => {
     let name = req.body.nameUser;
     let lastName = req.body.lastNameUser;
     let phone = req.body.phoneUser;
+    let email = req.body.emailUser;
+    let password = sha1(req.body.passwordUser);
     let address = req.body.addressUser;
 
-    let sqlSave = `INSERT INTO customer (name, last_name, phone, address)
-                    VALUES ('${name}','${lastName}','${phone}',
-                    '${address}');`;
-
-    connection.query(sqlSave, (err, resultSave) =>{
+    let sqlUniqueEmail = `SELECT email FROM customer WHERE email='${email}';`;
+    connection.query(sqlUniqueEmail, (err, resultUniqueEmail)=>{
         if(err) throw err;
-        res.redirect('/users');
+        if(resultUniqueEmail != undefined){
+            let message = 'There is an exisiting user with this email.';
+            res.render('users/registerNewUser', { message });
+        }
+        else{
+            let sqlSave = `INSERT INTO customer (name, last_name, email, 
+                password, phone, address)
+                VALUES ('${name}','${lastName}','${email}','${password}',
+                '${phone}','${address}');`;
+                connection.query(sqlSave, (err, resultSave) =>{
+                    if(err) throw err;
+                        res.redirect('/users');
+                    
+                });
+        }        
     });
 }
 
@@ -44,18 +62,36 @@ usersController.updateUser = (req, res) => {
     let idUser = req.params.idUser;
     let name = req.body.nameUser;
     let lastName = req.body.lastNameUser;
+    let email = req.body.emailUser;
     let phone = req.body.phoneUser;
     let address = req.body.addressUser;
+    console.log("password", req.body.passwordUser)
 
-    let sqlUpdate = `UPDATE customer SET name = '${name}', 
-                    last_name = '${lastName}', 
-                    phone = '${phone}',
-                    address = '${address}'
-                    WHERE id_user = ${idUser};`;
-    connection.query(sqlUpdate, (err, resultUpdate) => {
-        if(err) throw err;
-        res.redirect('/users');
-    });
+    if(req.body.passwordUser == undefined){
+        let sqlUpdate = `UPDATE customer SET name = '${name}', 
+                        last_name = '${lastName}', 
+                        email = '${email}',
+                        phone = '${phone}',
+                        address = '${address}'
+                        WHERE id_user = ${idUser};`;
+        connection.query(sqlUpdate, (err, resultUpdate) => {
+            if(err) throw err;
+            res.redirect('/users');
+        });
+    } else {
+        let password = sha1(req.body.passwordUser);
+        let sqlUpdate = `UPDATE customer SET name = '${name}', 
+                        last_name = '${lastName}', 
+                        email = '${email}',
+                        password = '${password}',
+                        phone = '${phone}',
+                        address = '${address}'
+                        WHERE id_user = ${idUser};`;
+        connection.query(sqlUpdate, (err, resultUpdate) => {
+            if(err) throw err;
+            res.redirect('/users');
+        });
+    }
 }
 
 usersController.removeUser = (req, res) => {
