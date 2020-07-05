@@ -15,7 +15,9 @@
             <div class="row login">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <div class="col-12 col-sm-12 col-md-8 col-lg-6 forms">
-                        <form action="/login" method="POST">
+                        <% if(!authentication || authentication == null ||
+                        authentication == undefined){ %>
+                        <form action="/" method="POST">
                             <div class="form-group">
                                 <label for="emailUser">Email</label>
                                 <input type="email" id="emailUser" name="emailUser"
@@ -31,6 +33,18 @@
                                 Register
                             </a>
                         </form>
+                        <% } else { %>
+                            <script>
+                                let tokenStringify = JSON.stringify("<%= token %>");
+                                localStorage.setItem('token1', tokenStringify);
+                            </script>
+                        <div class="row">
+                            <ul class="loggedCard">
+                                <li><h3>Bienvenido</h3></li>
+                                <li><h4><%- resultAuthentication.customer %></h4></li>
+                            </ul>
+                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

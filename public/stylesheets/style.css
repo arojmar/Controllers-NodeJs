@@ -17,6 +17,18 @@ a {
   height: 55vh;
 }
 
+.loggedCard {
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.loggedCard h4{
+  color: gold;
+}
+
 
 /* FORMS */
 .forms{
@@ -27,6 +39,30 @@ a {
   box-shadow: 4px 9px 12px 0px #303030e0;
   color: white;
   font-weight: 550;
+}
+
+/* USER FORM */
+.message {
+  border: 1px solid #f3db4887;
+  border-radius: 3px;
+  background-color: #fbfbd5;
+  box-shadow: 4px 9px 12px 0px #303030e0;
+  color: red;
+  font-weight: 550;
+  padding-top: 9px;
+  padding-bottom: 4px;
+  margin-bottom: -5px;
+  animation-name: scrollingUp;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+}
+
+@keyframes scrollingUp {
+  0% { transform: translateY(40px);}
+  50% { transform: translateY(15px);}
+  100% { transform: translateY(0px);}
 }
 
 
@@ -123,4 +159,13 @@ a {
  .footer a:hover {
   text-decoration: none;
   color: #b8b8b8;
+ }
+
+ /* ERROR */
+ .error{
+  border: 1px solid #cdcccc87;
+  border-radius: 5px;
+  background-color: #eaeaeaf0;
+  box-shadow: 4px 9px 12px 0px #303030e0;
+  font-weight: 550;
  }

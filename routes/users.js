@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/usersController.js');
-
+const verify = require('../config/verify.js');
 
 /* USERS ROUTES */
 router.get('/', usersController.listUsers);
